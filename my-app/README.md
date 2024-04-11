@@ -2,6 +2,7 @@
 
 Website for Louis Wang
 Built with React, Firebase Authentication, Firestore, Firebase Storage
+
 Planning to Host on Heroku (?)
 
 Domain Name: TBD
