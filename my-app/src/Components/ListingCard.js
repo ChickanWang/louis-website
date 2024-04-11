@@ -63,9 +63,11 @@ const HouseListingCard = (props) => {
             <Typography variant="body1" marginTop="1em">
               {props.blurb}
             </Typography>
+
+            {props.sold && (<Typography variant="body1" color="error">SOLD</Typography>)}
             <Button variant="contained" color="primary" sx={{margin: "1em 0"}}>Learn More</Button>
             {props.admin && (
-              <Button variant="contained" color="secondary" sx={{margin: "1em 0"}} onClick={() => handleDelete()}>Delete Listing</Button>
+              <Button variant="contained" color="error" sx={{margin: "1em 0"}} onClick={() => handleDelete()}>Delete Listing</Button>
             )}
           </CardContent>
         </Grid>
