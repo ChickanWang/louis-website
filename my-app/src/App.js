@@ -12,6 +12,9 @@ import Footer from './Components/Footer';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/system';
 import AdminFormPage from './Pages/AdminForm';
+import SoldPage from './Pages/Sold';
+import ContactPage from './Pages/Contact';
+import { Box } from '@mui/material';
 
 let theme = createTheme({
   palette: {
@@ -34,22 +37,24 @@ const AppDiv = styled('div')({
 function App() {
   return (
     <Router>
+      <Box sx={{minHeight: '100vh'}}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppDiv>
-        <NavBar />
-        <Routes>
-          <Route exact path = "/" element = {<Home />} />
-          <Route exact path = "/home" element = {<Home />} />
-          <Route exact path = "/buy" element = {<Buy />} />
-          <Route exact path = "/sell" element = {<Sell />} />
-          <Route exact path = "/listings" element = {<Listings />} />
-          <Route exact path = "/admin" element = {<Admin />} />
-          <Route exact path = "/adminform" element = {<AdminFormPage />} />
-        </Routes>
-        <Footer sx={{bottom: 0}}/>
-      </AppDiv>
+      <NavBar />
+      <Routes>
+        <Route exact path = "/" element = {<Home />} />
+        <Route exact path = "/home" element = {<Home />} />
+        <Route exact path = "/buy" element = {<Buy />} />
+        <Route exact path = "/sell" element = {<Sell />} />
+        <Route exact path = "/listings" element = {<Listings />} />
+        <Route exact path = "/admin" element = {<Admin />} />
+        <Route exact path = "/adminform" element = {<AdminFormPage />} />
+        <Route exact path = "/sold" element = {<SoldPage />} />
+        <Route exact path = "/contact" element = {<ContactPage />} />
+      </Routes>
+      <Footer sx={{bottom: 0}}/>
       </ThemeProvider>
+      </Box>
     </Router>
   );
 }

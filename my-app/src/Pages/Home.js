@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
-import agentPicture from '../static/placeholder.png';
+import { getDownloadURL, ref, getStorage } from 'firebase/storage';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import ListingCard from '../Components/ListingCard';
+import agentPicture from '../static/louis-wang.png';
 import suburbBg from '../static/background.jpeg';
+import HouseIcon from '@mui/icons-material/House';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+import Phone from '@mui/icons-material/Phone';
 
 const StyledCard = styled(Card)({
     display: 'flex',
@@ -18,7 +29,44 @@ const StyledCard = styled(Card)({
   });
 
 function Homepage(props) {
-  return (
+    const [listings, setListings] = useState([]);
+    const storage = getStorage();
+
+    useEffect(() => { fetchListings(); }, []);
+
+    const fetchListings = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "listings"));
+          const listingsArray = querySnapshot.docs.map(doc => doc.data());
+          var imageArray = [];
+          var additionalArray = [];
+
+          for (let i = 0; i < listingsArray.length; i++) {
+              var temp = []
+              for (let j = 0; j <= listingsArray[i].numImg; j++) {
+                  const url = await getDownloadURL(ref(storage, `${listingsArray[i].address}/${j}.jpg`));
+                  if (j === 0) {
+                      imageArray.push(url);
+                  } else {
+                      temp.push(url);
+                  }
+              }
+              additionalArray.push(temp);
+          }
+
+          const zipped = listingsArray.map((item, index) => ({
+              ...item,
+              titleImg: imageArray[index],
+              additionalImg: additionalArray[index]
+          }));
+
+          setListings(zipped.slice(0, 3));
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
+
+    return (
     <Box sx={{ minHeight: 'calc(200vh - 14rem)' }}>
         <Box 
             sx={{ 
@@ -38,17 +86,21 @@ function Homepage(props) {
                     backgroundPosition: 'center center',
                     opacity: 0.7,
                     zIndex: -1,
-                  },
+                    },
             }}
         >
                 <Grid container sx={{ height:'100%', display: 'flex', alignItems: 'center' }}>
                     <Grid item xs={12} md={6}>
                         <StyledCard>
                             <CardContent>
-                                <Typography variant="h1" sx={{ fontWeight: 900 }}>
+                                <Typography variant="h2" sx={{ fontWeight: 700 }}>
                                 LOUIS WANG
                                 </Typography>
-                                <Typography variant="h3" sx={{ fontWeight: 600 }}>
+                                <Typography variant="h4" sx={{ fontWeight: 400 }}>
+                                    Real Estate Broker
+                                </Typography>
+                                <hr/>
+                                <Typography variant="h3" sx={{ fontWeight: 500 }}>
                                 Your Trusted Partner for{' '}
                                 <span style={{ color: 'olive' }}>GTA</span>{' '}
                                 Real Estate Excellence
@@ -71,7 +123,7 @@ function Homepage(props) {
                                 height: 700,
                                 width: 470,
                                 maxHeight: { xs: 530, md: 790 },
-                                maxWidth: { xs: 350, md: 525 },
+                                maxWidth: { xs: 350, md: 525 }, 
                             }}
                             alt="Louis Wang - GTA Real Estate Agent"
                             src={agentPicture}
@@ -80,30 +132,114 @@ function Homepage(props) {
                 </Grid>
         </Box>
 
-        <Box sx={{ minHeight: 'calc(100vh - 7rem)' }}>
-            <StyledCard>
+        <Box sx={{ 
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 'calc(100vh - 7rem)',
+            backgroundColor: '#F8F4E3',
+            px: '10em',
+            py: '2em',
+        }}>
+            <Card sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                margin: '1rem',
+                border: '1px solid #ccc', 
+                borderRadius: '8px',
+                pt: '1em',
+            }}>
                 <CardContent>
-                    <Typography variant="h5">My Skills</Typography>
-                    <Typography variant="body1">
-                    Here are some of the skills I've acquired over the years:
-                    - Skill 1
-                    - Skill 2
-                    - Skill 3
-                    </Typography>
-                </CardContent>
-                </StyledCard>
+                    <Typography variant="h4" sx={{ fontWeight: 600, mb: 0 }}>Get to Know Me</Typography>
+                    <hr/>
 
-                <StyledCard>
-                <CardContent>
-                    <Typography variant="h5">Contact Me</Typography>
-                    <Typography variant="body1">
-                    Feel free to reach out via email at [Your Email] or follow me on [Social Media Platform].
+                    <Typography paragraph>
+                        With over 10 years of experience in the real estate industry, I have a profound understanding of the market trends and a knack for finding the best deals.
                     </Typography>
+                    <Typography paragraph>
+                        I specialize in residential properties, focusing on both buyers and sellers. I'm committed to delivering the best results and ensuring a smooth transaction process.
+                    </Typography>
+                    <Typography paragraph>
+                        I'm passionate about helping people find their dream homes and invest wisely in real estate. My approach is client-focused, ensuring that each client receives personalized and professional service.
+                    </Typography>
+                    <Typography paragraph>
+                        When I'm not working, I enjoy hiking, photography, and spending time with my family.
+                    </Typography>
+
+                    <hr />
+
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}>
+                        <Box>
+                            <Typography variant="h5" sx={{ fontWeight: 600 }}>Contact Me</Typography>
+                            <Typography paragraph>
+                                647-298-4645 <br/>
+                                wanglizhi2008@gmail.com <br/>
+                            </Typography>
+                            <Button sx={{my: '1rem'}} variant="contained" color="primary">Book a Showing</Button>
+                        </Box>
+
+                        <Box>
+                            <Typography variant="h5" sx={{ fontWeight: 600 }} align="right">Brokerage</Typography>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 300 }}>HomeLife Landmark Realty Inc., Brokerage</Typography>
+                            <Typography paragraph align="right">
+                                1943 IRONOAK WAY #203 <br/>
+                                OAKVILLE, Ontario <br/>
+                                L6H3V7
+                            </Typography>
+                        </Box>
+                    </Box>
                 </CardContent>
-            </StyledCard>
+            </Card>
+            <Box sx={{margin: '1rem'}}>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    my: '1em',
+                }}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                    }}>
+                        <a href="/listings" sx={{color: 'black'}}>
+                            <Typography variant="body" sx={{ fontWeight: 200 }}>View All Listings</Typography>
+                            <KeyboardDoubleArrowRightIcon sx={{height: '25px', width: '25px'}} />
+                        </a>
+                    </Box>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                    }}>
+                        <a href="/sold" sx={{color: 'black'}}>
+                            <Typography variant="body" sx={{ fontWeight: 200 }}>View Sold Listings</Typography>
+                            <HouseIcon sx={{height: '25px', width: '25px', mb: '2px'}} />
+                        </a>
+                    </Box>
+                </Box>
+                {listings.map((listing, idx) => (
+                    <ListingCard
+                        key={idx}
+                        address={listing.address}
+                        bath={listing.bath}
+                        bed={listing.bed}
+                        price={listing.price}
+                        blurb={listing.blurb}
+                        sold={listing.sold}
+                        titleImg={listing.titleImg}
+                        additionalImg={listing.additionalImg}
+                        numImg={listing.numImg}
+                        admin={false}
+                    />
+                ))}
+                {listings.length === 0 && <h2 sx={{margin: '3rem'}}>No Listings Found</h2>}
+            </Box>
         </Box>
     </Box>
-  );
+    );
 };
 
 export default Homepage

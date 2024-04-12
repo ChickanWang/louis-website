@@ -14,7 +14,7 @@ const initialFormData = {
     address: '',
     bath: '',
     bed: '',
-    sqft: '',
+    price: '',
     desc: '',
     blurb: '',
     numImg : 0,
@@ -139,7 +139,7 @@ function AdminFormPage(props) {
                     address: formData.address,
                     bath: formData.bath,
                     bed: formData.bed,
-                    sqft: formData.sqft,
+                    price: formData.price,
                     blurb: formData.blurb,
                     desc: formData.desc,
                     numImg: formData.numImg,
@@ -197,133 +197,158 @@ function AdminFormPage(props) {
         {info && <Alert severity="info">{info}</Alert>}
         {error && <Alert severity="error">{error}</Alert>}
         <TabPanel value={selectedTab} index={0}>
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    label="Home Address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    margin="normal"
-                />
-                <TextField
-                    label="Number of Bathrooms"
-                    name="bath"
-                    type="number"
-                    value={formData.bath}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    margin="normal"
-                />
-                <TextField
-                    label="Number of Bedrooms"
-                    name="bed"
-                    type="number"
-                    value={formData.bed}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    margin="normal"
-                />
-                <TextField
-                    label="Square Footage"
-                    name="sqft"
-                    type="number"
-                    value={formData.sqft}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Blurb"
-                    name="blurb"
-                    value={formData.blurb}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    multiline
-                    rows={2}
-                />
-                <TextField
-                    label="Description"
-                    name="desc"
-                    value={formData.desc}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    multiline
-                    rows={4}
-                />
-                <Box 
-                    sx={{margin: '1rem 0'}}
-                >
-                    <h4>Header Image</h4>
-                    <input
-                        id="headerImg"
-                        type="file"
-                        label="Title Image"
-                        name="titleImg"
-                        accept=".jpeg, .png, .jpg"
-                        onChange={(e) => handleTitleUpload(e)}
+            <Box 
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',  // Centers the content horizontally
+                    width: {
+                        xs: '100%',  // 100% width on extra-small screens
+                        md: '80%',   // 80% width on small screens and up
+                    },
+                    margin: 'auto',  // Centers the box horizontally
+                }}
+            >
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        label="Home Address"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
                     />
-                </Box>
-                <Box 
-                    sx={{margin: '1rem 0'}}
-                >
-                    <h4>Other Images</h4>
-                    <input 
-                        id="otherImg"
-                        type="file" 
-                        label="Additional Image URLs"
-                        name="additionalImg"
+                    <TextField
+                        label="Number of Bathrooms"
+                        name="bath"
+                        type="number"
+                        value={formData.bath}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Number of Bedrooms"
+                        name="bed"
+                        type="number"
+                        value={formData.bed}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Price"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
                         fullWidth
                         margin="normal"
-                        multiple
-                        onChange={(e) => handleAdditionalUpload(e)}
                     />
-                </Box>
-                <FormGroup 
-                    sx={{margin: '1rem 0'}}
-                >
-                    <FormControlLabel
-                        control={
-                        <Checkbox
-                            checked={formData.sold}
-                            onChange={handleChange}
-                            name="sold"
+                    <TextField
+                        label="Blurb"
+                        name="blurb"
+                        value={formData.blurb}
+                        onChange={handleChange}
+                        fullWidth
+                        margin="normal"
+                        multiline
+                        rows={2}
+                    />
+                    <TextField
+                        label="Description"
+                        name="desc"
+                        value={formData.desc}
+                        onChange={handleChange}
+                        fullWidth
+                        margin="normal"
+                        multiline
+                        rows={4}
+                    />
+                    <Box 
+                        sx={{margin: '1rem 0'}}
+                    >
+                        <h4>Header Image</h4>
+                        <input
+                            id="headerImg"
+                            type="file"
+                            label="Title Image"
+                            name="titleImg"
+                            accept=".jpeg, .png, .jpg"
+                            onChange={(e) => handleTitleUpload(e)}
                         />
-                        }
-                        label="Has House Been Sold?"
-                    />
-                </FormGroup>
-                <Button type="submit" variant="contained" color="primary">
-                    Submit
-                </Button>
-            </form>
+                    </Box>
+                    <Box 
+                        sx={{margin: '1rem 0'}}
+                    >
+                        <h4>Other Images</h4>
+                        <input 
+                            id="otherImg"
+                            type="file" 
+                            label="Additional Image URLs"
+                            name="additionalImg"
+                            fullWidth
+                            margin="normal"
+                            multiple
+                            onChange={(e) => handleAdditionalUpload(e)}
+                        />
+                    </Box>
+                    <FormGroup 
+                        sx={{margin: '1rem 0'}}
+                    >
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={formData.sold}
+                                onChange={handleChange}
+                                name="sold"
+                            />
+                            }
+                            label="Has House Been Sold?"
+                        />
+                    </FormGroup>
+                    <Button type="submit" variant="contained" color="primary">
+                        Submit
+                    </Button>
+                </form>
+            </Box>
         </TabPanel>
         <TabPanel value={selectedTab} index={1}>
-            {listings.map((listing, idx) => (
-                <ListingCard
-                    key={idx}
-                    address={listing.address}
-                    bath={listing.bath}
-                    bed={listing.bed}
-                    sqft={listing.sqft}
-                    blurb={listing.blurb}
-                    sold={listing.sold}
-                    titleImg={listing.titleImg}
-                    additionalImg={listing.additionalImg}
-                    numImg={listing.numImg}
-                    admin={true}
-                    fetchListings={fetchListings}
-                    setSuccess={setSuccess}
-                    setInfo={setInfo}
-                    setError={setError}
-                />
-            ))}
-            {listings.length === 0 && <h2>No Listings Found</h2>}
+            <Box 
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',  // Centers the content horizontally
+                    width: {
+                        xs: '100%',  // 100% width on extra-small screens
+                        md: '80%',   // 80% width on small screens and up
+                    },
+                    margin: 'auto',  // Centers the box horizontally
+                }}
+            >
+                {listings.map((listing, idx) => (
+                    <ListingCard
+                        key={idx}
+                        address={listing.address}
+                        bath={listing.bath}
+                        bed={listing.bed}
+                        price={listing.price}
+                        blurb={listing.blurb}
+                        sold={listing.sold}
+                        titleImg={listing.titleImg}
+                        additionalImg={listing.additionalImg}
+                        numImg={listing.numImg}
+                        admin={true}
+                        fetchListings={fetchListings}
+                        setSuccess={setSuccess}
+                        setInfo={setInfo}
+                        setError={setError}
+                    />
+                ))}
+                {listings.length === 0 && <h2>No Listings Found</h2>}
+            </Box>
         </TabPanel>
     </Box>
     );
