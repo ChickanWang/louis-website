@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Card, CardMedia, CardContent, Grid, Typography, Button, Box } from '@mui/material';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 const storage = getStorage();
 
 const HouseListingCard = (props) => {
+    const navigate = useNavigate();
     
     const handleDelete = async () => {
         props.setInfo("Deleting " + props.address + "...");
@@ -33,7 +35,11 @@ const HouseListingCard = (props) => {
         }
     
         props.setInfo('');
-    };    
+    };
+
+    const handleRedirect = () => {
+        navigate(`/listinginfo/${props.address}`);
+    }
 
   return (
     <Card sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', margin: 'px'}}>
@@ -83,7 +89,7 @@ const HouseListingCard = (props) => {
             </Typography>
 
             {props.sold && (<Typography variant="body1" color="error">SOLD</Typography>)}
-            <Button variant="contained" color="primary" sx={{margin: "1em 0"}}>Learn More</Button>
+            <Button variant="contained" color="primary" sx={{margin: "1em 0"}} onClick={() => handleRedirect()}>Learn More</Button>
             {props.admin && (
               <Button variant="contained" color="error" sx={{margin: "1em 0"}} onClick={() => handleDelete()}>Delete Listing</Button>
             )}

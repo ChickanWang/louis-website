@@ -10,10 +10,6 @@ import suburbBg from '../static/background.jpeg';
 import HouseIcon from '@mui/icons-material/House';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import Phone from '@mui/icons-material/Phone';
 
 const StyledCard = styled(Card)({
     display: 'flex',
@@ -147,6 +143,7 @@ function Homepage(props) {
                 border: '1px solid #ccc', 
                 borderRadius: '8px',
                 pt: '1em',
+                px: '1em'
             }}>
                 <CardContent>
                     <Typography variant="h4" sx={{ fontWeight: 600, mb: 0 }}>Get to Know Me</Typography>

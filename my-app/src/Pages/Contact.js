@@ -44,7 +44,8 @@ function ContactPage() {
                         xs: '100%',  // 100% width on extra-small screens
                         md: '80%',   // 80% width on small screens and up
                     },
-                    margin: 'auto',  // Centers the box horizontally
+                    mx: 'auto',  // Centers the box horizontally
+                    mb: '5em',  // Adds margin on the y-axis
                     padding: '2rem',
                 }}
             >
