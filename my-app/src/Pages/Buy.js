@@ -1,6 +1,6 @@
 import React from 'react';
 import InfoCard from '../Components/InfoCard';
-import { Box, Card, CardContent, Typography, CardMedia } from '@mui/material';
+import { Box, Card, Typography, CardMedia } from '@mui/material';
 import BuyingHome from '../static/pexels/buying-home.jpeg';
 import Consultation from '../static/pexels/consultation.jpeg';
 import HomeSearch from '../static/home-search.jpeg';

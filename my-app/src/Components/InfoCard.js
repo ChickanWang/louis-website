@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Grid, Typography, Button, Box } from '@mui/material';
+import { Card, CardMedia, CardContent, Grid, Typography, Box } from '@mui/material';
 
 const InfoCard = (props) => {
   return (
     <Card sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', border: '1px solid #ccc', borderRadius: '8px', margin: '1em'}}>
       
-       {props.right == false && 
+       {props.right === false && 
        <Box
             sx={{
             margin: '1em', // Adds space around the Box, creating a gap between the border and the image
@@ -47,7 +47,7 @@ const InfoCard = (props) => {
           </CardContent>
         </Grid>
       </Grid>
-      { props.right == true &&
+      { props.right === true &&
       <Box
             sx={{
             margin: '1em', // Adds space around the Box, creating a gap between the border and the image

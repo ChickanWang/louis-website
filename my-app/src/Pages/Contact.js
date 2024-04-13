@@ -1,29 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Card, Typography } from '@mui/material';
 import ContactForm from '../Components/ContactForm';
 
-const initialFormData = {
-    name: '',
-    phone: '',
-    email: '',
-    message: '',
-};
-
 function ContactPage() {
-    const [formData, setFormData] = useState(initialFormData);
-
-    const handleChange = (e) => {
-        const { name, value, checked, type } = e.target;
-        setFormData({
-        ...formData,
-        [name]: type === 'checkbox' ? checked : value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    };
-
 
     return (
         <Box sx={{

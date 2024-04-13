@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Modal, Typography, imageListClasses } from '@mui/material';
+import { Box, Modal, Typography } from '@mui/material';
 
 function ImageModal(props) {
     const [open, setOpen] = useState(false);

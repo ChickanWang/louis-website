@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { Card, CardMedia, Modal, Typography } from "@mui/material";
+import { Card, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/material";
-import { Button } from "@mui/material";
-import { IconButton } from "@mui/material";
 import HotelIcon from '@mui/icons-material/Hotel';
 import BathtubIcon from '@mui/icons-material/Bathtub';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
@@ -11,7 +9,6 @@ import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
 import ContactForm from '../Components/ContactForm';
-import ModalImage from "react-modal-image";
 import ImageModal from "../Components/ImageModal";
 
 function ListingInfo(props) {

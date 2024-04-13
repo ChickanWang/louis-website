@@ -10,7 +10,6 @@ import Listings from './Pages/Listings';
 import Admin from './Pages/LoginPage';
 import Footer from './Components/Footer';
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/system';
 import AdminFormPage from './Pages/AdminForm';
 import SoldPage from './Pages/Sold';
 import ContactPage from './Pages/Contact';
@@ -29,11 +28,6 @@ let theme = createTheme({
 });
 
 theme = responsiveFontSizes(theme);
-
-const AppDiv = styled('div')({
-  height: '200vh'
-})
-
 
 function App() {
   return (

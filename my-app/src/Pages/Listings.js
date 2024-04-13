@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
-import { Card, CardContent, Typography, Divider } from '@mui/material';
+import { Typography, Divider } from '@mui/material';
 import { Box } from '@mui/material';
 
 function Listingspage(props) {
