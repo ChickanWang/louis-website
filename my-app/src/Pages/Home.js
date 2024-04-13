@@ -10,6 +10,8 @@ import suburbBg from '../static/pexels/background.jpeg';
 import HouseIcon from '@mui/icons-material/House';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Button from '@mui/material/Button';
+import WechatQR from '../static/wechat.jpeg';
+import ImageModal from '../Components/ImageModal';
 
 const StyledCard = styled(Card)({
     display: 'flex',
@@ -23,6 +25,7 @@ const StyledCard = styled(Card)({
     backgroundColor: 'rgba(255, 255, 255, 0.6)', // 100% transparent
     fontFamily: '"Overpass", sans-serif',
   });
+
 
 function Homepage(props) {
     const [listings, setListings] = useState([]);
@@ -133,8 +136,11 @@ function Homepage(props) {
             flexDirection: 'column',
             minHeight: 'calc(100vh - 7rem)',
             backgroundColor: '#E6E8E6',
-            px: '10em',
-            py: '2em',
+            width: '100%',
+            padding: {
+                xs: '2rem',  // 100% width on extra-small screens
+                md: '5rem',   // 80% width on small screens and up
+            },
         }}>
             <Card sx={{
                 display: 'flex',
@@ -158,12 +164,11 @@ function Homepage(props) {
                     <Typography paragraph>
                         I'm passionate about helping people find their dream homes and invest wisely in real estate. My approach is client-focused, ensuring that each client receives personalized and professional service.
                     </Typography>
-                    <Typography paragraph>
-                        When I'm not working, I enjoy hiking, photography, and spending time with my family.
-                    </Typography>
 
                     <hr />
 
+                    <AwardsDisplay />
+                    <hr />
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -174,6 +179,7 @@ function Homepage(props) {
                                 647-298-4645 <br/>
                                 wanglizhi2008@gmail.com <br/>
                             </Typography>
+                            <ImageModal src={WechatQR} alt="Wechat" />
                             <Button sx={{my: '1rem'}} variant="contained" color="primary">Book a Showing</Button>
                         </Box>
 
@@ -238,5 +244,47 @@ function Homepage(props) {
     </Box>
     );
 };
+
+function AwardsDisplay() {
+  const awards = [
+    {
+      title: "Top 5% Agent in Canada",
+      year: "2024",
+      description: "Achieved recognition as one of the top 5% agents in Canada."
+    },
+    {
+      title: "Chairman Award",
+      year: "2015-2017\n2020-2022",
+      description: "Received the prestigious Chairman Award for exemplary performance."
+    },
+    {
+      title: "President Award",
+      year: "2019",
+      description: "Honored with the President Award for outstanding achievements."
+    }
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'flexwrap', gap: '20px', marginTop: '20px' }}>
+      {awards.map((award, index) => (
+        <Card key={index} variant="outlined" sx={{width: '50%'}}>
+          <CardContent sx={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent: 'space-between'}}>
+            <Box sx={{display:'flex', flexDirection: 'column'}}>
+                <Typography variant="h6" component="div">
+                {award.title}
+                </Typography>
+                <Typography color="text.secondary" sx={{whiteSpace: 'pre-wrap'}}>
+                    HomeLife Landmark
+                </Typography>
+            </Box>
+            <Typography color="text.secondary" sx={{whiteSpace: 'pre-wrap'}}>
+              {award.year}
+            </Typography>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
 
 export default Homepage

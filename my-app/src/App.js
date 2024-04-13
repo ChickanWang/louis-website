@@ -46,7 +46,7 @@ function App() {
         <Route exact path = "/adminform" element = {<AdminFormPage />} />
         <Route exact path = "/sold" element = {<SoldPage />} />
         <Route exact path = "/contact" element = {<ContactPage />} />
-        <Route exact path = "/listinginfo/:address" element={<ListingInfo /> } />
+        <Route exact path = "/listinginfo/:address/*" element={<ListingInfo /> } />
       </Routes>
       <Footer sx={{bottom: 0}}/>
       </ThemeProvider>

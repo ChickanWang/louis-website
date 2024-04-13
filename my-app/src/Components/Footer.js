@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, Grid, Typography, Link, IconButton } from '@mui/material';
-import WechatIcon from './WechatIcon';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import HomelifeLogo from '../static/homelife-logo-sml.png';
+import ImageModal from './ImageModal';
+import WechatQR from '../static/wechat.jpeg';
 
 function Footer() {
   return (
@@ -20,9 +21,7 @@ function Footer() {
             <IconButton href="mailto:wanglizhi2008@gmail.com" sx={{ color: 'inherit', marginRight: 1 }}>
               <EmailIcon />
             </IconButton>
-            <IconButton href="https://www.facebook.com" sx={{ color: 'inherit', marginRight: 1 }}>
-              <WechatIcon />
-            </IconButton>
+            <ImageModal src={WechatQR} alt="My Wechat QR Code" />
             <IconButton href="tel:+6472984645" sx={{ color: 'inherit', marginRight: 2 }}>
               <PhoneIcon />
             </IconButton>

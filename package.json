@@ -4,7 +4,8 @@
     "emailjs": "^4.0.3",
     "firebase": "^10.10.0",
     "firebaseui": "^6.1.0",
-    "react-modal-image": "^2.6.0"
+    "react-modal-image": "^2.6.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",

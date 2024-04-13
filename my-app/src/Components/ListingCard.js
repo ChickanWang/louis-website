@@ -38,7 +38,8 @@ const HouseListingCard = (props) => {
     };
 
     const handleRedirect = () => {
-        navigate(`/listinginfo/${props.address}`);
+      const encodedAddress = encodeURIComponent(props.address);
+      navigate(`/listinginfo/${encodedAddress}`);
     }
 
   return (

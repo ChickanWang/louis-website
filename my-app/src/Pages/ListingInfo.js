@@ -12,14 +12,17 @@ import ContactForm from '../Components/ContactForm';
 import ImageModal from "../Components/ImageModal";
 
 function ListingInfo(props) {
-    const { address } = useParams();
+    var { address } = useParams();
+    address = decodeURIComponent(address);
     const [listing, setListing] = useState({});
     const storage = getStorage();
 
     const fetchListing = async () => {
         try {
           const querySnapshot = await getDocs(query(collection(db, "listings"), where("address", "==", address)));
+          console.log(address);
           const listing = querySnapshot.docs.map(doc => doc.data())[0];
+          console.log(listing);
           var titleImg = "";
           var additionalImg = [];
 

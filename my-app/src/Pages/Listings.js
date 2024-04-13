@@ -14,30 +14,19 @@ function Listingspage(props) {
     useEffect(() => { fetchListings(); }, []);
 
     const fetchListings = async () => {
-        console.log("fetching ...")
         try {
           const querySnapshot = await getDocs(query(collection(db, "listings"), where("sold", "==", false)));
           const listingsArray = querySnapshot.docs.map(doc => doc.data());
           var imageArray = [];
-          var additionalArray = [];
 
           for (let i = 0; i < listingsArray.length; i++) {
-              var temp = []
-              for (let j = 0; j <= listingsArray[i].numImg; j++) {
-                  const url = await getDownloadURL(ref(storage, `${listingsArray[i].address}/${j}.jpg`));
-                  if (j === 0) {
-                      imageArray.push(url);
-                  } else {
-                      temp.push(url);
-                  }
-              }
-              additionalArray.push(temp);
+                const url = await getDownloadURL(ref(storage, `${listingsArray[i].address}/${0}.jpg`));
+                imageArray.push(url);
           }
 
           const zipped = listingsArray.map((item, index) => ({
               ...item,
               titleImg: imageArray[index],
-              additionalImg: additionalArray[index]
           }));
 
           setListings(zipped);

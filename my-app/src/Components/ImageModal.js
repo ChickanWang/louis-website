@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Modal, Typography } from '@mui/material';
+import WechatIcon from './WechatIcon';
+import { IconButton } from '@mui/material';
 
 function ImageModal(props) {
     const [open, setOpen] = useState(false);
@@ -22,12 +24,17 @@ function ImageModal(props) {
     return (
       <div>
         {/* Thumbnail image */}
+        { props.alt === "My Wechat QR Code" &&
+        <IconButton onClick={handleOpen} sx={{ color: 'inherit', marginRight: 1 }}>
+            <WechatIcon />
+        </IconButton> }   
+        { props.alt != "My Wechat QR Code" && 
         <Box
             sx={{
-            margin: '1em', // Adds space around the Box, creating a gap between the border and the image
-            border: '1px solid lightgrey', // Black border around the Box
-            width: 307, // Width adjusted to include the border and margin
-            height: 207, // Height adjusted to include the border and margin
+            margin: '1em',
+            border: '1px solid lightgrey',
+            width: props.alt === "Wechat" ? '207px' : '307px',
+            height: 207,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -50,7 +57,7 @@ function ImageModal(props) {
             alt={props.alt}
             onClick={handleOpen}
             />
-        </Box>
+        </Box>}
   
         {/* Modal to display full image */}
         <Modal
