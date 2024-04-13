@@ -53,6 +53,7 @@ function Listingspage(props) {
             flexDirection: 'column',
             alignItems: 'center',  // Centers the content horizontally
             padding: '0 5em',  // Adds padding around the box
+            backgroundColor: '#E6E8E6',
         }}>
             <Box sx={{
                 display: 'flex',

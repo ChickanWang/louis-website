@@ -1,6 +1,13 @@
 {
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "emailjs": "^4.0.3",
     "firebase": "^10.10.0",
-    "firebaseui": "^6.1.0"
+    "firebaseui": "^6.1.0",
+    "react-modal-image": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4"
   }
 }

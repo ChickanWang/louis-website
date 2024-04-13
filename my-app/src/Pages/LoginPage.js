@@ -37,12 +37,13 @@ function LoginPage(props) {
       flexDirection: 'column',
       alignItems: 'center',
       height: 'calc(100vh - 10.5rem)',
+      backgroundColor: '#E6E8E6',
     }}>
       <Box sx={{
         margin: 'auto'
       }}>
         <Typography component="h1" variant="h5" style={{ marginTop: '20px', textAlign: 'center' }}>
-          Sign in
+          Admin Sign In
         </Typography>
         <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
           <TextField

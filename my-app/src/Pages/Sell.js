@@ -1,29 +1,33 @@
 import React from 'react';
 import InfoCard from '../Components/InfoCard';
 import { Box, Card, CardContent, Typography, CardMedia } from '@mui/material';
-import Background from '../static/background.jpeg';
-import SellingHome from '../static/selling-home.jpeg';
-import Consultation from '../static/consultation.jpeg';
-import HomeSearch from '../static/home-search.jpeg';
-import PropertyViewings from '../static/property-viewings.jpeg';
+import SellingHome from '../static/pexels/selling-home.jpeg';
+import GettingStarted from '../static/pexels/getting-started.jpeg';
+import ListingMarketing from '../static/pexels/listing-marketing.jpeg';
+import Offers from '../static/pexels/offers.jpeg';
+import PostOffer from '../static/pexels/post-offer.jpeg';
 
 const headers = ["Getting Started", "Listing and Marketing", "Dealing with Offers", "Post-Offer Process"]
 const content = [
-    "Schedule a free consultation to discuss your home buying criteria, budget, and timeline. \
-    We'll help you understand the market and outline what you can expect throughout the buying process.",
-    "I leverage my extensive experience and network to select properties that align perfectly with your lifestyle and budget.\
-     With access to all of the GTA Real Estate Board and insights into properties that aren't widely advertised,\
-     you're not just finding a house; you're finding your future home.",
-    "Once we've narrowed down the list to a few select properties, the next step is for us to visit these homes in person.\
-     If one of them turns out to be everything you’ve hoped for, we’ll move forward by making an offer."
+    "Begin your home selling journey by preparing your property and setting the right price. \
+    Our team will guide you through initial assessments and help you understand the market to make your home competitive.",
+    "Showcase your home to potential buyers through professional listings and strategic marketing. \
+    Our team will guide you through the process, helping with floor plans, staging advice, and more. \
+    We utilize high-quality photos, virtual tours, and targeted advertising to capture attention and drive showings.",
+    "Navigate through the offer process with our expert advice to ensure you make informed decisions.\
+    We help you evaluate each proposal to maximize your sale price and minimize stress and \
+    carefully review all terms and conditions to ensure clarity and include provisions that protect your interests.",
+    "Once an offer is accepted, we'll guide you through the necessary inspections, paperwork, and closing procedures. \
+    Our team ensures a smooth transition to finalizing your sale, keeping you informed every step of the way."
 ]
-const images = [Consultation, HomeSearch, PropertyViewings]
+const images = [GettingStarted, ListingMarketing, Offers, PostOffer]
 
 function SellPage(props) {
     return (        
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
+            backgroundColor: '#E6E8E6',
         }}>
             <Card sx={{
                 width: '100%',
@@ -40,7 +44,7 @@ function SellPage(props) {
                         alt="Selling your Home"
                         sx={{
                         width: '100%',
-                        height: 500,
+                        height: 600,
                         objectFit: 'cover',
                     }} />
                     <Box sx={{

@@ -14,7 +14,6 @@ function SoldPage(props) {
     useEffect(() => { fetchListings(); }, []);
 
     const fetchListings = async () => {
-        console.log("fetching ...")
         try {
           const querySnapshot = await getDocs(query(collection(db, "listings"), where("sold", "==", true)));
           const listingsArray = querySnapshot.docs.map(doc => doc.data());
@@ -53,6 +52,7 @@ function SoldPage(props) {
             flexDirection: 'column',
             alignItems: 'center',  // Centers the content horizontally
             padding: '0 5em',  // Adds padding around the box
+            backgroundColor: '#E6E8E6',
         }}>
             <Box sx={{
                 display: 'flex',

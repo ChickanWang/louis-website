@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
+import ContactForm from '../Components/ContactForm';
 
 const initialFormData = {
     name: '',
@@ -25,16 +26,9 @@ function ContactPage() {
 
 
     return (
-        <Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: '2rem'
-                }}
-            >
-                <h1>Contact Me / Inquire About Booking</h1>
-            </Box>
+        <Box sx={{
+            backgroundColor: '#E6E8E6',
+        }}>
             <Box 
                 sx={{
                     display: 'flex',
@@ -45,52 +39,19 @@ function ContactPage() {
                         md: '80%',   // 80% width on small screens and up
                     },
                     mx: 'auto',  // Centers the box horizontally
-                    mb: '5em',  // Adds margin on the y-axis
-                    padding: '2rem',
+                    padding: '6rem',
                 }}
-            >
-                <form onSubmit={handleSubmit}>
-                    <TextField
-                        label="Name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Phone Number"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Message"
-                        name="message"
-                        value={formData.messagee}
-                        onChange={handleChange}
-                        fullWidth
-                        margin="normal"
-                        multiline
-                        rows={4}
-                    />
-                    <Button type="submit" variant="contained" color="primary">
-                        Submit
-                    </Button>
-                </form>
+            >  
+            <Card sx={{
+                mx: 'auto',
+                padding: '3em',
+            }}>
+            <h1>Contact Me / Inquire About Booking</h1>
+            <Typography variant="body1" paragraph sx={{margin: "1em 0"}}>
+                For any inquiries, please fill out this form, I will do my best to get back to you as soon as possible!
+            </Typography>
+            <ContactForm />
+            </Card>
             </Box>
         </Box>
     )

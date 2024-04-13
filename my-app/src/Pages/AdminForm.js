@@ -14,6 +14,7 @@ const initialFormData = {
     address: '',
     bath: '',
     bed: '',
+    sqft: '',
     price: '',
     desc: '',
     blurb: '',
@@ -123,7 +124,10 @@ function AdminFormPage(props) {
       };
   
     const handleChange = (e) => {
-        const { name, value, checked, type } = e.target;
+        var { name, value, checked, type } = e.target;
+        if (name === 'desc' || name === 'blurb') {
+            value = value.replace(/↵/g, "\n")
+        } 
         setFormData({
         ...formData,
         [name]: type === 'checkbox' ? checked : value,
@@ -139,6 +143,7 @@ function AdminFormPage(props) {
                     address: formData.address,
                     bath: formData.bath,
                     bed: formData.bed,
+                    sqft: formData.sqft,
                     price: formData.price,
                     blurb: formData.blurb,
                     desc: formData.desc,
@@ -234,6 +239,15 @@ function AdminFormPage(props) {
                         name="bed"
                         type="number"
                         value={formData.bed}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Square Footage"
+                        name="sqft"
+                        value={formData.sqft}
                         onChange={handleChange}
                         fullWidth
                         required

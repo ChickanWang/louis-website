@@ -1,11 +1,10 @@
 import React from 'react';
 import InfoCard from '../Components/InfoCard';
 import { Box, Card, CardContent, Typography, CardMedia } from '@mui/material';
-import Background from '../static/background.jpeg';
-import BuyingHome from '../static/buying-home.jpeg';
-import Consultation from '../static/consultation.jpeg';
+import BuyingHome from '../static/pexels/buying-home.jpeg';
+import Consultation from '../static/pexels/consultation.jpeg';
 import HomeSearch from '../static/home-search.jpeg';
-import PropertyViewings from '../static/property-viewings.jpeg';
+import PropertyViewings from '../static/pexels/property-viewings.jpeg';
 
 const headers = ["Consultation", "Home Search", "Property Viewings"]
 const content = [
@@ -24,6 +23,7 @@ function Buypage(props) {
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
+            backgroundColor: '#E6E8E6'
         }}>
             <Card sx={{
                 width: '100%',
@@ -40,7 +40,7 @@ function Buypage(props) {
                         alt="Buying a Home"
                         sx={{
                         width: '100%',
-                        height: 500,
+                        height: 600,
                         objectFit: 'cover',
                     }} />
                     <Box sx={{

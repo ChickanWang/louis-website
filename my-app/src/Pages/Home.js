@@ -6,7 +6,7 @@ import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import ListingCard from '../Components/ListingCard';
 import agentPicture from '../static/louis-wang.png';
-import suburbBg from '../static/background.jpeg';
+import suburbBg from '../static/pexels/background.jpeg';
 import HouseIcon from '@mui/icons-material/House';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Button from '@mui/material/Button';
@@ -132,7 +132,7 @@ function Homepage(props) {
             display: 'flex',
             flexDirection: 'column',
             minHeight: 'calc(100vh - 7rem)',
-            backgroundColor: '#F8F4E3',
+            backgroundColor: '#E6E8E6',
             px: '10em',
             py: '2em',
         }}>
