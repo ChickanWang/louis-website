@@ -1,13 +1,18 @@
 # Louis Wang Real Estate Website
 
 Website for Louis Wang
+
 Built with React
 
 Listings and Admin Management: Firebase Authentication, Firestore, Firebase Storage
+
 Contact Form Management: HeroTofu
+
 Images From: Pexels
-Hosted On: TBD
-Domain Name: TBD
+
+Hosted On: Vercel
+
+Domain Name: Squarespace 
 
 Pages:
 1. Homepage
