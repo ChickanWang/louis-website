@@ -18,7 +18,7 @@ function ContactPage() {
                         md: '80%',   // 80% width on small screens and up
                     },
                     mx: 'auto',  // Centers the box horizontally
-                    padding: '6rem',
+                    padding: {sx: '1em', md: '5em'},
                 }}
             >  
             <Card sx={{

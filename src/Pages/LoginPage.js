@@ -40,7 +40,8 @@ function LoginPage(props) {
       backgroundColor: '#E6E8E6',
     }}>
       <Box sx={{
-        margin: 'auto'
+        margin: 'auto',
+        padding: '1em',
       }}>
         <Typography component="h1" variant="h5" style={{ marginTop: '20px', textAlign: 'center' }}>
           Admin Sign In

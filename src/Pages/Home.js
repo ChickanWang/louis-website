@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
 import { getDocs, collection } from 'firebase/firestore';
@@ -174,14 +175,17 @@ function Homepage(props) {
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
+                            alignItems: 'flex-end',
                         }}>
-                            <Typography variant="h5" sx={{ fontWeight: 600 }} align="right">Contact Me</Typography>
+                            <Typography variant="h5" sx={{ fontWeight: 600 }}>Contact Me</Typography>
                             <Typography paragraph align="right">
                                 647-298-4645 <br/>
                                 wanglizhi2008@gmail.com <br/>
                             </Typography>
-                            <ImageModal sx={{ml: 'auto'}}src={WechatQR} alt="Wechat" />
-                            <Button sx={{my: '1rem', ml: 'auto'}} variant="contained" color="primary">Book a Showing</Button>
+                            <ImageModal src={WechatQR} alt="Wechat" />
+                            <Link to="/contact">
+                                <Button variant="contained" color="primary">Book a Showing</Button>
+                            </Link>
                         </Box>
                     </Box>
                 </CardContent>
