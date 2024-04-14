@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
-import { styled } from '@mui/system';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
@@ -12,20 +11,6 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import Button from '@mui/material/Button';
 import WechatQR from '../static/wechat.jpeg';
 import ImageModal from '../Components/ImageModal';
-
-const StyledCard = styled(Card)({
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 10,
-    padding: '1rem',
-    height: '70%',
-    width: '80%',
-    color: 'black',
-    margin: 'auto',
-    backgroundColor: 'rgba(255, 255, 255, 0.6)', // 100% transparent
-    fontFamily: '"Overpass", sans-serif',
-  });
-
 
 function Homepage(props) {
     const [listings, setListings] = useState([]);
@@ -80,7 +65,18 @@ function Homepage(props) {
         >
                 <Grid container sx={{ height:'100%', display: 'flex', alignItems: 'center' }}>
                     <Grid item xs={12} md={6}>
-                        <StyledCard>
+                        <Card sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            borderRadius: 10,
+                            padding: '1rem',
+                            height: '70%',
+                            margin: {xs: '0', md: '0 auto'},
+                            width: {xs: '100%', md: '80%'},
+                            color: 'black',
+                            backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                            fontFamily: '"Overpass", sans-serif',
+                        }}>
                             <CardContent>
                                 <Typography variant="h2" sx={{ fontWeight: 700 }}>
                                 LOUIS WANG
@@ -101,7 +97,7 @@ function Homepage(props) {
                                 throughout our diverse community.
                                 </Typography>
                             </CardContent>
-                        </StyledCard>
+                        </Card>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: 'none', md: 'flex' } }} >
                         <Box
@@ -128,8 +124,8 @@ function Homepage(props) {
             backgroundColor: '#E6E8E6',
             width: '100%',
             padding: {
-                xs: '2rem',  // 100% width on extra-small screens
-                md: '5rem',   // 80% width on small screens and up
+                xs: '0rem',
+                md: '5rem',
             },
         }}>
             <Card sx={{
@@ -158,29 +154,34 @@ function Homepage(props) {
                     <hr />
 
                     <AwardsDisplay />
+
                     <hr />
                     <Box sx={{
                         display: 'flex',
+                        flexDirection: {xs: 'column', md: 'row'},
                         justifyContent: 'space-between',
                     }}>
                         <Box>
-                            <Typography variant="h5" sx={{ fontWeight: 600 }}>Contact Me</Typography>
+                            <Typography variant="h5" sx={{ fontWeight: 600 }}>Brokerage</Typography>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 300 }}>HomeLife Landmark Realty Inc., Brokerage</Typography>
                             <Typography paragraph>
-                                647-298-4645 <br/>
-                                wanglizhi2008@gmail.com <br/>
-                            </Typography>
-                            <ImageModal src={WechatQR} alt="Wechat" />
-                            <Button sx={{my: '1rem'}} variant="contained" color="primary">Book a Showing</Button>
-                        </Box>
-
-                        <Box>
-                            <Typography variant="h5" sx={{ fontWeight: 600 }} align="right">Brokerage</Typography>
-                            <Typography variant="subtitle1" sx={{ fontWeight: 300 }} align="right">HomeLife Landmark Realty Inc., Brokerage</Typography>
-                            <Typography paragraph align="right">
                                 1943 IRONOAK WAY #203 <br/>
                                 OAKVILLE, Ontario <br/>
                                 L6H3V7
                             </Typography>
+                        </Box>
+
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <Typography variant="h5" sx={{ fontWeight: 600 }} align="right">Contact Me</Typography>
+                            <Typography paragraph align="right">
+                                647-298-4645 <br/>
+                                wanglizhi2008@gmail.com <br/>
+                            </Typography>
+                            <ImageModal sx={{ml: 'auto'}}src={WechatQR} alt="Wechat" />
+                            <Button sx={{my: '1rem', ml: 'auto'}} variant="contained" color="primary">Book a Showing</Button>
                         </Box>
                     </Box>
                 </CardContent>
@@ -198,7 +199,7 @@ function Homepage(props) {
                         alignItems: 'center'
                     }}>
                         <a href="/listings" sx={{color: 'black'}}>
-                            <Typography variant="body" sx={{ fontWeight: 200 }}>View All Listings</Typography>
+                            <Typography variant="body" sx={{ fontWeight: 200 }}>All Listings</Typography>
                             <KeyboardDoubleArrowRightIcon sx={{height: '25px', width: '25px'}} />
                         </a>
                     </Box>
@@ -208,7 +209,7 @@ function Homepage(props) {
                         alignItems: 'center'
                     }}>
                         <a href="/sold" sx={{color: 'black'}}>
-                            <Typography variant="body" sx={{ fontWeight: 200 }}>View Sold Listings</Typography>
+                            <Typography variant="body" sx={{ fontWeight: 200 }}>Sold Listings</Typography>
                             <HouseIcon sx={{height: '25px', width: '25px', mb: '2px'}} />
                         </a>
                     </Box>
@@ -255,33 +256,51 @@ function AwardsDisplay() {
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'flexwrap', gap: '20px', marginTop: '20px' }}>
-      {awards.map((award, index) => (
-        <Card key={index} variant="outlined" sx={{width: '50%'}}>
-          <CardContent sx={{
-                display:'flex', 
+    <Box sx={{ 
+        display: 'flex',                
+        flexDirection: {
+            xs: 'column',
+            lg: 'row'
+        }, 
+        marginTop: '20px', 
+        width: '100%', 
+        justifyContent: 'space-between'
+    }}>
+        {awards.map((award, index) => (
+            <Card 
+                key={index}
+                variant="outlined" 
+                sx={{ 
+                    width: {
+                        xs: '100%',
+                        lg: '33%'
+                    }, 
+            }}>
+            <CardContent sx={{
+                display: 'flex', 
                 flexDirection: {
-                    xs: 'column',
-                    lg: 'row',
+                    xs: 'row',  // Switched to row for small screens
+                    lg: 'column'  // Column for larger screens
                 }, 
-                alignItems:'center', 
+                alignItems: 'center', 
                 justifyContent: 'space-between'
             }}>
-            <Box sx={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Typography variant="h6" component="div">
-                {award.title}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography variant="h6" component="div">
+                    {award.title}
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ whiteSpace: 'pre-wrap' }}>
+                        HomeLife Landmark
+                    </Typography>
+                </Box>
+                <Typography color="text.secondary" sx={{ whiteSpace: 'pre-wrap' }}>
+                    {award.year}
                 </Typography>
-                <Typography color="text.secondary" sx={{whiteSpace: 'pre-wrap'}}>
-                    HomeLife Landmark
-                </Typography>
-            </Box>
-            <Typography color="text.secondary" sx={{whiteSpace: 'pre-wrap'}}>
-              {award.year}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+            </CardContent>
+            </Card>
+        ))}
+    </Box>
+
   );
 }
 

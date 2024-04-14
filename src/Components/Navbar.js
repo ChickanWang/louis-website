@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,8 +10,11 @@ import Logo from '../static/homelife-logo.png';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-const navItems = ['Home', 'Buy', 'Sell', 'Sold', 'Listings'];
+const navItems = ['Home', 'Buy', 'Sell', 'Sold', 'Listings', 'Contact'];
 
 const StyledNavBar = styled(AppBar)({
     height: '7rem',
@@ -28,6 +31,17 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 function NavBar() {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
       <StyledNavBar>
         <StyledToolbar>
@@ -70,7 +84,7 @@ function NavBar() {
           }}>
 
             <Box sx={{
-              display: 'flex',
+              display: { xs: 'none', sm: 'flex' },
               flexDirection: 'row',
               alignItems: 'center',
               margin: '0.5rem 0',
@@ -85,31 +99,63 @@ function NavBar() {
               <Typography sx={{ ml: "0.2rem", mr: "0.5rem", fontSize: '15px', fontWeight: 400}}>wanglizhi2008@gmail.com</Typography>
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2, display: { sm: 'none' } }}
+                onClick={handleClick}
+            >
+                <MenuIcon />
+            </IconButton>
+            <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+            >
                 {navItems.map((item) => (
-                  <Button key={item} sx={{ color: '#fff' }}>
-                    <Link to={`/${item.toLowerCase()}`} className="nav-link">
-                        {item}
-                    </Link>
-                  </Button>
+                    <MenuItem key={item} onClick={handleClose}>
+                        <Link to={`/${item.toLowerCase()}`} className="nav-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            {item}
+                        </Link>
+                    </MenuItem>
                 ))}
-                <Button
-                    sx={{
-                    fontWeight: 300,
-                    borderRadius: '15px',
-                    backgroundColor: 'olive',
-                    color: 'white',
-                    '&:hover': {
-                        backgroundColor: 'black',
-                    },
-                    ml: '1rem',
-                    mr: '0.5rem' 
-                    }}
-                    padding="0.5rem"
-                    href="/contact"
-                >
-                    Contact Me
-              </Button>
+            </Menu>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+                {navItems.map((item, index) => (
+                    <Button
+                        key={item}
+                        sx={{
+                            color: '#fff',
+                            ...(index === navItems.length - 1 && { // Apply special styles if it's the last item
+                                fontWeight: 300,
+                                borderRadius: '15px',
+                                backgroundColor: 'olive',
+                                color: 'white',
+                                '&:hover': {
+                                    backgroundColor: 'black',
+                                },
+                                ml: '1rem',
+                                mr: '0.5rem'
+                            })
+                        }}
+                        padding={index === navItems.length - 1 ? "0.5rem" : ""}
+                        href={index === navItems.length - 1 ? "/contact" : `/${item.toLowerCase()}`}
+                    >
+                        {item}
+                    </Button>
+                ))}
             </Box>
           </Box>
         </StyledToolbar>

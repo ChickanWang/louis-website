@@ -27,7 +27,7 @@ function Footer() {
             </IconButton>
             <Link href="/buy" sx={{ marginRight: 2 }}>Buy</Link>
             <Link href="/sell" sx={{ marginRight: 2 }}>Sell</Link>
-            <Link href="/contact">Contact Me</Link>
+            <Link href="/contact">Contact</Link>
           </Box>
         </Grid>
       </Grid>
