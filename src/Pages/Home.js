@@ -65,51 +65,67 @@ function Homepage(props) {
             }}
         >
                 <Grid container sx={{ height:'100%', display: 'flex', alignItems: 'center' }}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sx={{ display: { xs: 'flex', sm: 'none' } }} >
+                        <Box
+                            component="img"
+                            sx={{
+                                margin: 'auto',
+                                objectFit: 'cover',
+                                height: {xs: 370, sm: 500},
+                                width: {xs: 290, sm: 400},
+                            }}
+                            alt="Louis Wang - GTA Real Estate Agent"
+                            src={agentPicture}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
                         <Card sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            borderRadius: 10,
-                            padding: '1rem',
-                            height: '70%',
-                            margin: {xs: '0', md: '0 auto'},
-                            width: {xs: '100%', md: '80%'},
+                            borderRadius: {xs: 5, md: 10},
+                            padding: {xs: '0rem', md: '1rem'},
+                            margin: '0 auto',
+                            width: {xs: '95%', md: '80%'},
                             color: 'black',
                             backgroundColor: 'rgba(255, 255, 255, 0.6)',
                             fontFamily: '"Overpass", sans-serif',
                         }}>
-                            <CardContent>
+                            <Box sx={{ 
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                padding:{xs:"0.5rem", md:"1rem"}
+                            }}>
                                 <Typography variant="h2" sx={{ fontWeight: 700 }}>
-                                LOUIS WANG
+                                    LOUIS WANG
                                 </Typography>
                                 <Typography variant="h4" sx={{ fontWeight: 400 }}>
                                     Real Estate Broker
                                 </Typography>
-                                <hr/>
-                                <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                                Your Trusted Partner for{' '}
-                                <span style={{ color: 'olive' }}>GTA</span>{' '}
-                                Real Estate Excellence
+                                <hr style={{ width: '100%', border: '1px solid black' }}/>
+                                <Typography variant="body" sx={{ mb:'0.5em', display: {xs: 'block', md: 'none'}}}>
+                                    HomeLife Landmark Realty Inc., Brokerage
+                                </Typography>
+                                <Typography variant="h3" sx={{ fontSize: {xs: '1.5rem', md: '3rem'}, fontWeight: 700, }}>
+                                    Your Trusted Partner for{' '}
+                                    <span style={{ color: 'olive' }}>GTA</span>{' '}
+                                    Real Estate Excellence
                                 </Typography>
                                 <br/>
-                                <Typography variant="body1">
-                                As a seasoned realtor with extensive experience in the vibrant market of the Greater Toronto Area, 
-                                I am dedicated to helping you navigate the complexities of buying, selling, or investing in properties 
-                                throughout our diverse community.
+                                <Typography variant="body1" sx={{ display: {xs: 'none', sm:'block'} }}>
+                                    As a seasoned realtor with extensive experience in the vibrant market of the Greater Toronto Area, 
+                                    I am dedicated to helping you navigate the complexities of buying, selling, or investing in properties 
+                                    throughout our diverse community.
                                 </Typography>
-                            </CardContent>
+                            </Box>
                         </Card>
                     </Grid>
-                    <Grid item md={6} sx={{ display: { xs: 'none', md: 'flex' } }} >
+                    <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'flex' } }} >
                         <Box
                             component="img"
                             sx={{
                                 margin: 'auto',
                                 bottom: 0,
-                                height: 700,
-                                width: 470,
-                                maxHeight: { xs: 530, md: 790 },
-                                maxWidth: { xs: 350, md: 525 }, 
+                                height:{ sm: 450, lg: 700 },
+                                width: { sm: 300, lg: 470 }, 
                             }}
                             alt="Louis Wang - GTA Real Estate Agent"
                             src={agentPicture}
@@ -126,15 +142,14 @@ function Homepage(props) {
             width: '100%',
             padding: {
                 xs: '0rem',
-                md: '5rem',
+                md: '2rem 5rem',
             },
         }}>
             <Card sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                margin: '1rem',
                 border: '1px solid #ccc', 
-                borderRadius: '8px',
+                borderRadius: {xs: '0px', md:'8px'},
                 pt: '1em',
                 px: '1em'
             }}>
@@ -283,8 +298,8 @@ function AwardsDisplay() {
             <CardContent sx={{
                 display: 'flex', 
                 flexDirection: {
-                    xs: 'row',  // Switched to row for small screens
-                    lg: 'column'  // Column for larger screens
+                    xs: 'row', 
+                    lg: 'column' 
                 }, 
                 alignItems: 'center', 
                 justifyContent: 'space-between'
