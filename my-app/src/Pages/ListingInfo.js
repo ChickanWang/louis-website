@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from 'react-router-dom';
 import { Card, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/material";
@@ -17,12 +17,10 @@ function ListingInfo(props) {
     const [listing, setListing] = useState({});
     const storage = getStorage();
 
-    const fetchListing = async () => {
+    const fetchListing = useCallback(async () => {
         try {
           const querySnapshot = await getDocs(query(collection(db, "listings"), where("address", "==", address)));
-          console.log(address);
           const listing = querySnapshot.docs.map(doc => doc.data())[0];
-          console.log(listing);
           var titleImg = "";
           var additionalImg = [];
 
@@ -42,15 +40,14 @@ function ListingInfo(props) {
           };
 
           setListing(zipped);
-          console.log(listing);
         } catch (e) {
             console.log(e.message);
         }
-    };
+    }, [storage, address]);
 
     useEffect(() => {
         fetchListing();
-    }, []);
+    }, [fetchListing]);
     
     return (
         <Box sx={{

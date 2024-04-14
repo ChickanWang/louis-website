@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
@@ -17,7 +17,7 @@ const StyledCard = styled(Card)({
     display: 'flex',
     alignItems: 'center',
     borderRadius: 10,
-    padding: '2rem',
+    padding: '1rem',
     height: '70%',
     width: '80%',
     color: 'black',
@@ -31,39 +31,29 @@ function Homepage(props) {
     const [listings, setListings] = useState([]);
     const storage = getStorage();
 
-    useEffect(() => { fetchListings(); }, []);
-
-    const fetchListings = async () => {
+    const fetchListings = useCallback(async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "listings"));
           const listingsArray = querySnapshot.docs.map(doc => doc.data());
           var imageArray = [];
-          var additionalArray = [];
 
           for (let i = 0; i < listingsArray.length; i++) {
-              var temp = []
-              for (let j = 0; j <= listingsArray[i].numImg; j++) {
-                  const url = await getDownloadURL(ref(storage, `${listingsArray[i].address}/${j}.jpg`));
-                  if (j === 0) {
-                      imageArray.push(url);
-                  } else {
-                      temp.push(url);
-                  }
-              }
-              additionalArray.push(temp);
+                const url = await getDownloadURL(ref(storage, `${listingsArray[i].address}/${0}.jpg`));
+                imageArray.push(url);
           }
 
           const zipped = listingsArray.map((item, index) => ({
               ...item,
               titleImg: imageArray[index],
-              additionalImg: additionalArray[index]
           }));
 
           setListings(zipped.slice(0, 3));
         } catch (e) {
             console.log(e.message);
         }
-    };
+    }, [storage]);
+
+    useEffect(() => { fetchListings(); }, [fetchListings]);
 
     return (
     <Box sx={{ minHeight: 'calc(200vh - 14rem)' }}>
@@ -185,7 +175,7 @@ function Homepage(props) {
 
                         <Box>
                             <Typography variant="h5" sx={{ fontWeight: 600 }} align="right">Brokerage</Typography>
-                            <Typography variant="subtitle1" sx={{ fontWeight: 300 }}>HomeLife Landmark Realty Inc., Brokerage</Typography>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 300 }} align="right">HomeLife Landmark Realty Inc., Brokerage</Typography>
                             <Typography paragraph align="right">
                                 1943 IRONOAK WAY #203 <br/>
                                 OAKVILLE, Ontario <br/>
@@ -268,8 +258,16 @@ function AwardsDisplay() {
     <div style={{ display: 'flex', flexDirection: 'flexwrap', gap: '20px', marginTop: '20px' }}>
       {awards.map((award, index) => (
         <Card key={index} variant="outlined" sx={{width: '50%'}}>
-          <CardContent sx={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent: 'space-between'}}>
-            <Box sx={{display:'flex', flexDirection: 'column'}}>
+          <CardContent sx={{
+                display:'flex', 
+                flexDirection: {
+                    xs: 'column',
+                    lg: 'row',
+                }, 
+                alignItems:'center', 
+                justifyContent: 'space-between'
+            }}>
+            <Box sx={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Typography variant="h6" component="div">
                 {award.title}
                 </Typography>

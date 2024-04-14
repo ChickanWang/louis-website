@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ListingCard from '../Components/ListingCard';
-import { useState, useEffect } from 'react';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { getDownloadURL, ref, getStorage } from 'firebase/storage';
@@ -11,9 +10,7 @@ function Listingspage(props) {
     const [listings, setListings] = useState([]);
     const storage = getStorage();
 
-    useEffect(() => { fetchListings(); }, []);
-
-    const fetchListings = async () => {
+    const fetchListings = useCallback(async () => {
         try {
           const querySnapshot = await getDocs(query(collection(db, "listings"), where("sold", "==", false)));
           const listingsArray = querySnapshot.docs.map(doc => doc.data());
@@ -33,8 +30,9 @@ function Listingspage(props) {
         } catch (e) {
             console.log(e.message);
         }
-    };
+    }, [storage]);
 
+    useEffect(() => { fetchListings(); }, [fetchListings]);
 
     return (
         <Box sx={{

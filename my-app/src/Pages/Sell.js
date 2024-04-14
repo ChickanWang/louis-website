@@ -9,17 +9,18 @@ import PostOffer from '../static/pexels/post-offer.jpeg';
 
 const headers = ["Getting Started", "Listing and Marketing", "Dealing with Offers", "Post-Offer Process"]
 const content = [
-    "Begin your home selling journey by preparing your property and setting the right price. \
-    Our team will guide you through initial assessments and help you understand the market to make your home competitive.",
-    "Showcase your home to potential buyers through professional listings and strategic marketing. \
-    Our team will guide you through the process, helping with floor plans, staging advice, and more. \
-    We utilize high-quality photos, virtual tours, and targeted advertising to capture attention and drive showings.",
-    "Navigate through the offer process with our expert advice to ensure you make informed decisions.\
-    We help you evaluate each proposal to maximize your sale price and minimize stress and \
-    carefully review all terms and conditions to ensure clarity and include provisions that protect your interests.",
-    "Once an offer is accepted, we'll guide you through the necessary inspections, paperwork, and closing procedures. \
-    Our team ensures a smooth transition to finalizing your sale, keeping you informed every step of the way."
+    "Begin your home selling journey by preparing your property and setting the right price. \n" +
+    "Our team will guide you through initial assessments and help you understand the market to make your home competitive.",
+    "Showcase your home to potential buyers through professional listings and strategic marketing. \n" +
+    "Our team will guide you through the process, helping with floor plans, staging advice, and more. \n" +
+    "We utilize high-quality photos, virtual tours, and targeted advertising to capture attention and drive showings.",
+    "Navigate through the offer process with our expert advice to ensure you make informed decisions. \n" +
+    "We help you evaluate each proposal to maximize your sale price and minimize stress and \n" +
+    "carefully review all terms and conditions to ensure clarity and include provisions that protect your interests.",
+    "Once an offer is accepted, we'll guide you through the necessary inspections, paperwork, and closing procedures. \n" +
+    "Our team ensures a smooth transition to finalizing your sale, keeping you informed every step of the way."
 ]
+
 const images = [GettingStarted, ListingMarketing, Offers, PostOffer]
 
 function SellPage(props) {

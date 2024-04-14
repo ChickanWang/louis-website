@@ -48,7 +48,6 @@ function ContactForm() {
             }
             setFormData(initialFormData);
             setSuccess('Thanks for Reaching Out! We will get back to you soon!');
-            console.log("success");
           })
           .catch((err) => {
             e.target.submit();

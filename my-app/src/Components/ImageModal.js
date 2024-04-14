@@ -28,7 +28,7 @@ function ImageModal(props) {
         <IconButton onClick={handleOpen} sx={{ color: 'inherit', marginRight: 1 }}>
             <WechatIcon />
         </IconButton> }   
-        { props.alt != "My Wechat QR Code" && 
+        { props.alt !== "My Wechat QR Code" && 
         <Box
             sx={{
             margin: '1em',

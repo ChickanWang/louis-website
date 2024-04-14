@@ -8,13 +8,13 @@ import PropertyViewings from '../static/pexels/property-viewings.jpeg';
 
 const headers = ["Consultation", "Home Search", "Property Viewings"]
 const content = [
-    "Schedule a free consultation to discuss your home buying criteria, budget, and timeline. \
-    We'll help you understand the market and outline what you can expect throughout the buying process.",
-    "I leverage my extensive experience and network to select properties that align perfectly with your lifestyle and budget.\
-     With access to all of the GTA Real Estate Board and insights into properties that aren't widely advertised,\
-     you're not just finding a house; you're finding your future home.",
-    "Once we've narrowed down the list to a few select properties, the next step is for us to visit these homes in person.\
-     If one of them turns out to be everything you’ve hoped for, we’ll move forward by making an offer."
+    "Schedule a free consultation to discuss your home buying criteria, budget, and timeline. \n" +
+    "We'll help you understand the market and outline what you can expect throughout the buying process.",
+    "I leverage my extensive experience and network to select properties that align perfectly with your lifestyle and budget.\n" +
+    "With access to all of the GTA Real Estate Board and insights into properties that aren't widely advertised, \n" +
+    "you're not just finding a house; you're finding your future home.",
+    "Once we've narrowed down the list to a few select properties, the next step is for us to visit these homes in person.\n" +
+    "If one of them turns out to be everything you’ve hoped for, we’ll move forward by making an offer."
 ]
 const images = [Consultation, HomeSearch, PropertyViewings]
 
