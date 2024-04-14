@@ -42,12 +42,12 @@ function Homepage(props) {
     useEffect(() => { fetchListings(); }, [fetchListings]);
 
     return (
-    <Box sx={{ minHeight: 'calc(200vh - 14rem)' }}>
+    <Box>
         <Box 
             sx={{ 
-                height: 'calc(100vh - 7rem)', 
                 display: 'flex', 
                 alignItems: 'center', 
+                flexDirection: 'column',
                 '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -55,8 +55,11 @@ function Homepage(props) {
                     left: 0,
                     right: 0,
                     bottom: 0,
+                    minWidth: '100%',
+                    height: '1000px',
                     backgroundImage: `url(${suburbBg})`,
                     backgroundRepeat: 'no-repeat',
+                    backgroundAttachment: 'fixed',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center center',
                     opacity: 0.7,
@@ -69,7 +72,7 @@ function Homepage(props) {
                         <Box
                             component="img"
                             sx={{
-                                margin: 'auto',
+                                margin: '1rem auto',
                                 objectFit: 'cover',
                                 height: {xs: 370, sm: 500},
                                 width: {xs: 290, sm: 400},
@@ -82,7 +85,7 @@ function Homepage(props) {
                         <Card sx={{
                             borderRadius: {xs: 5, md: 10},
                             padding: {xs: '0rem', md: '1rem'},
-                            margin: '0 auto',
+                            margin: {xs: '1em auto', md: '5em auto'},
                             width: {xs: '95%', md: '80%'},
                             color: 'black',
                             backgroundColor: 'rgba(255, 255, 255, 0.6)',
@@ -92,7 +95,7 @@ function Homepage(props) {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                padding:{xs:"0.5rem", md:"1rem"}
+                                padding:"0.5rem"
                             }}>
                                 <Typography variant="h2" sx={{ fontWeight: 700 }}>
                                     LOUIS WANG
@@ -101,16 +104,15 @@ function Homepage(props) {
                                     Real Estate Broker
                                 </Typography>
                                 <hr style={{ width: '100%', border: '1px solid black' }}/>
-                                <Typography variant="body" sx={{ mb:'0.5em', display: {xs: 'block', md: 'none'}}}>
+                                <Typography variant="body" sx={{ mb:'0.5em', }}>
                                     HomeLife Landmark Realty Inc., Brokerage
                                 </Typography>
-                                <Typography variant="h3" sx={{ fontSize: {xs: '1.5rem', md: '3rem'}, fontWeight: 700, }}>
+                                <Typography variant="h3" sx={{ display: {xs: 'none', md:'block'}, fontWeight: 700, }}>
                                     Your Trusted Partner for{' '}
                                     <span style={{ color: 'olive' }}>GTA</span>{' '}
                                     Real Estate Excellence
                                 </Typography>
-                                <br/>
-                                <Typography variant="body1" sx={{ display: {xs: 'none', sm:'block'} }}>
+                                <Typography variant="body1" sx={{ display: {xs: 'none', md:'block'}}} >
                                     As a seasoned realtor with extensive experience in the vibrant market of the Greater Toronto Area, 
                                     I am dedicated to helping you navigate the complexities of buying, selling, or investing in properties 
                                     throughout our diverse community.
@@ -122,8 +124,7 @@ function Homepage(props) {
                         <Box
                             component="img"
                             sx={{
-                                margin: 'auto',
-                                bottom: 0,
+                                margin: '2rem auto',
                                 height:{ sm: 450, lg: 700 },
                                 width: { sm: 300, lg: 470 }, 
                             }}
@@ -137,7 +138,6 @@ function Homepage(props) {
         <Box sx={{ 
             display: 'flex',
             flexDirection: 'column',
-            minHeight: 'calc(100vh - 7rem)',
             backgroundColor: '#E6E8E6',
             width: '100%',
             padding: {
@@ -145,6 +145,28 @@ function Homepage(props) {
                 md: '2rem 5rem',
             },
         }}>
+            <Card sx={{ 
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding:{xs:"0.5rem", md:"1rem"},
+                border: '1px solid #ccc', 
+                borderRadius: {xs: '0px', md:'8px'},
+                display: { xs: 'block', md: 'none' },
+                margin: '1rem',
+                pt: '1em',
+                px: '1em',
+            }}>
+                <Typography variant="h3" sx={{ fontSize: {xs: '1.5rem', md: '3rem'}, fontWeight: 700, }}>
+                    Your Trusted Partner for{' '}
+                    <span style={{ color: 'olive' }}>GTA</span>{' '}
+                    Real Estate Excellence
+                </Typography>
+                <Typography variant="body1" sx={{ display: {xs: 'block', md:'none'}}} >
+                    As a seasoned realtor with extensive experience in the vibrant market of the Greater Toronto Area, 
+                    I am dedicated to helping you navigate the complexities of buying, selling, or investing in properties 
+                    throughout our diverse community.
+                </Typography>
+            </Card>
             <Card sx={{
                 display: 'flex',
                 flexDirection: 'column',

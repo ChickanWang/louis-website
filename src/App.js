@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -15,6 +14,7 @@ import SoldPage from './Pages/Sold';
 import ContactPage from './Pages/Contact';
 import ListingInfo from './Pages/ListingInfo';
 import { Box } from '@mui/material';
+import Test from './Pages/Test';
 
 let theme = createTheme({
   palette: {
@@ -32,7 +32,7 @@ theme = responsiveFontSizes(theme);
 function App() {
   return (
     <Router>
-      <Box sx={{minHeight: '100vh'}}>
+      <Box>
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <NavBar />
@@ -47,6 +47,7 @@ function App() {
         <Route exact path = "/sold" element = {<SoldPage />} />
         <Route exact path = "/contact" element = {<ContactPage />} />
         <Route exact path = "/listinginfo/:address/*" element={<ListingInfo /> } />
+        <Route exact path = "/test" element={<Test />} />
       </Routes>
       <Footer sx={{bottom: 0}}/>
       </ThemeProvider>
