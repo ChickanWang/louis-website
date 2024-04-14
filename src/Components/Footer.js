@@ -22,7 +22,7 @@ function Footer() {
               <EmailIcon />
             </IconButton>
             <ImageModal src={WechatQR} alt="My Wechat QR Code" />
-            <IconButton href="tel:+6472984645" sx={{ color: 'inherit', marginRight: 2 }}>
+            <IconButton href="tel:+16472984645" sx={{ color: 'inherit', marginRight: 2 }}>
               <PhoneIcon />
             </IconButton>
             <Link href="/buy" sx={{ marginRight: 2 }}>Buy</Link>
